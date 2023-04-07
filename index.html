@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Virtual Piano</title>
+    <link rel="stylesheet" href="css.css">
+</head>
+<body>
+<div class="container">
+    <div class="white-keys">
+<kbd class="item white">A</kbd>
+    <kbd class="item white">S</kbd>
+    <kbd class="item white">D</kbd>
+    <kbd class="item white">F</kbd>
+    <kbd class="item white">G</kbd>
+    <kbd class="item white">H</kbd>
+    <kbd class="item white">J</kbd>
+        </div>
+    <div class="black-keys">
+        <kbd class="item black w">W</kbd>
+        <kbd class="item black e">E</kbd>
+            <kbd class="item black t">T</kbd>
+            <kbd class="item black y">Y</kbd>
+            <kbd class="item black u">U</kbd>
+    </div>
+</div>
+<script>
+    pianoKeys = document.querySelectorAll(".item")
+    pianoKeys.forEach(key => {
+        key.addEventListener("click", () => {
+            audio(`${key.textContent.toUpperCase()}.mp3`)
+        })
+    })
+
+    function audio(src){
+        const audio = new Audio(src);
+        audio.play();
+    }
+
+    document.addEventListener('keydown', (event) => {
+        try {
+            audio(`${event.key.toUpperCase()}.mp3`)
+        }
+        catch(e) {
+            console.log("Wrong Key")
+        }
+    })
+    </script>
+</body>
+</html>
